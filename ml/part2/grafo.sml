@@ -5,7 +5,7 @@ fun parse file =
     (* Hocus pocus read an integer *)
     val n = Option.valOf (TextIO.scanStream (Int.scan StringCvt.DEC) input)
     fun read_int input = Option.valOf (TextIO.scanStream (Int.scan StringCvt.DEC) input)
-    fun read 0 acc = rev acc
+    fun read 0 acc = acc
       | read i acc =
         let
           val pair=(read_int input,read_int input)
