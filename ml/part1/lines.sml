@@ -1,4 +1,5 @@
-
+fun gcd (0,y) = y
+  | gcd (x,y) = gcd (y mod x, x)
 fun init x y =4*(x)*(y)+x+y
 
 fun box x y dx dy =  Int.toLarge(2*(x+1-dx)*(y+1-dy))
@@ -8,7 +9,7 @@ fun accept lmin lmax dx dy =
   let 
     val mhkos = dx*dx+dy*dy
   in
-    (lmin*lmin <= mhkos) andalso (lmax*lmax >= mhkos) andalso (dx=1 orelse  dy=1 orelse (((dx mod dy)<>0) andalso ((dy mod dx)<>0)))
+    (lmin*lmin <= mhkos) andalso (lmax*lmax >= mhkos) andalso (gcd(dx,dy)=1)
   end
 
 
