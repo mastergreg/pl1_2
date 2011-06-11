@@ -5,17 +5,19 @@ fun init x y =4*(x)*(y)+x+y
 fun box x y dx dy =  Int.toLarge(2*(x+1-dx)*(y+1-dy))
 
 
-fun accept lmin lmax dx dy = 
+fun accept lminsq lmaxsq dx dy = 
   let 
     val mhkos = dx*dx+dy*dy
   in
-    (lmin*lmin <= mhkos) andalso (lmax*lmax >= mhkos) andalso (gcd(dx,dy)=1)
+    (lminsq <= mhkos) andalso (lmaxsq >= mhkos) andalso (gcd(dx,dy)=1)
   end
 
 
 fun lines w h lmin lmax = 
   let
     val start = if lmin <= 1 then init w h else 0
+    val lminsq=lmin*lmin
+    val lmaxsq=lmax*lmax
     fun linesH w h dx dy lmin lmax (acc:IntInf.int) = 
       if w<dx andalso h<dy 
         then acc
@@ -23,7 +25,7 @@ fun lines w h lmin lmax =
           let
             val (nextdx,nextdy)=if dx<=w then ((dx+1),dy) else (1,dy+1)
           in
-            if accept lmin lmax dx dy 
+            if accept lminsq lmaxsq dx dy 
               then linesH w h nextdx nextdy lmin lmax (acc+(box w h dx dy))
               else linesH w h nextdx nextdy lmin lmax acc
           end
