@@ -18,6 +18,10 @@ public class Tree
     headList = new LinkedList<Node>();
     headList.add(head);
   }
+  public LinkedList<Node> getHeadList()
+  {
+    return headList;
+  }
   private Node findDown(Node begin,int data)
   {
     Node current = begin;
