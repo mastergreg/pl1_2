@@ -1,4 +1,5 @@
 import java.util.StringTokenizer;
+import java.util.LinkedList;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 public class fileParser
@@ -8,6 +9,7 @@ public class fileParser
   private BufferedReader br=null;
   private StringTokenizer strTzer= null;
   private int[][] nodeArray=null;
+  private LinkedList<int[]> NodeList = new LinkedList<int[]>();
   public fileParser()
   {
     isr = new InputStreamReader(System.in);
@@ -24,13 +26,15 @@ public class fileParser
   {
     int current = 0;
     nodeArray = new int[2][nodes];
+    int[] inputArray = new int[2];
     for(current = 0; current < nodes ; current++)
     { 
       try
       {
         strTzer = new StringTokenizer(br.readLine());
-        nodeArray[0][current] = Integer.parseInt(strTzer.nextToken());
-        nodeArray[1][current] = Integer.parseInt(strTzer.nextToken());
+        inputArray[0] = nodeArray[0][current] = Integer.parseInt(strTzer.nextToken());
+        inputArray[1] = nodeArray[1][current] = Integer.parseInt(strTzer.nextToken());
+        NodeList.add(inputArray);
       }
       catch ( java.io.IOException e )
       {
@@ -41,6 +45,10 @@ public class fileParser
   {
     return nodeArray;
   }
+  public LinkedList<int[]> getNodeList()
+  {
+    return NodeList;
+  }
   public void printNodeArray()
   {
     int current = 0;
@@ -48,5 +56,9 @@ public class fileParser
     {
       System.out.println("("+nodeArray[0][current]+","+nodeArray[1][current]+")");
     }
+  }
+  public int getNodes()
+  {
+    return nodes;
   }
 }
