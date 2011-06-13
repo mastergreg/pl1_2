@@ -1,4 +1,5 @@
 import java.util.StringTokenizer;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
@@ -8,7 +9,6 @@ public class fileParser
   private InputStreamReader isr=null;
   private BufferedReader br=null;
   private StringTokenizer strTzer= null;
-  private int[][] nodeArray=null;
   private LinkedList<int[]> NodeList = new LinkedList<int[]>();
   public fileParser()
   {
@@ -25,15 +25,14 @@ public class fileParser
   public void parseIn()
   {
     int current = 0;
-    nodeArray = new int[2][nodes];
-    int[] inputArray = new int[2];
     for(current = 0; current < nodes ; current++)
     { 
       try
       {
         strTzer = new StringTokenizer(br.readLine());
-        inputArray[0] = nodeArray[0][current] = Integer.parseInt(strTzer.nextToken());
-        inputArray[1] = nodeArray[1][current] = Integer.parseInt(strTzer.nextToken());
+        int[] inputArray = new int[2];
+        inputArray[0] = Integer.parseInt(strTzer.nextToken());
+        inputArray[1] = Integer.parseInt(strTzer.nextToken());
         NodeList.add(inputArray);
       }
       catch ( java.io.IOException e )
@@ -41,32 +40,16 @@ public class fileParser
       }
     }
   }
-  public int[][] getNodeArray()
-  {
-    return nodeArray;
-  }
   public LinkedList<int[]> getNodeList()
   {
     return NodeList;
   }
-  public void printNodeArray()
-  {
-    int current = 0;
-    for (current = 0 ; current < nodes ; current++ )
-    {
-      System.out.println("("+nodeArray[0][current]+","+nodeArray[1][current]+")");
-    }
-  }
   public void printNodeList()
   {
-    LinkedList<int[]> buf = new LinkedList<int[]>();
-    buf = (LinkedList<int[]>) NodeList.clone();
-    int[] current = null;
-    while( buf.size() > 0 )
+    System.out.println("Size = "+NodeList.size());
+    for (int[] current : NodeList)
     {
-      
-      current = buf.removeFirst();
-      System.out.println("("+current[0]+","+current[1]+")");
+      System.out.println(current+" ("+current[0]+","+current[1]+")");
     }
   }
   public int getNodes()

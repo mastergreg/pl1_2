@@ -9,8 +9,10 @@ public class Main
     test.printNodeList();
     Tree myTestTree = new Tree();
     myTestTree.insertNodesInTree(test.getNodeList()); 
+    test.printNodeList();
     myTestTree.print();
 
+    System.out.println("\nEND OF PROG");
 	}
 
 }

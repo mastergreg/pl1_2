@@ -1,94 +1,131 @@
 import java.util.List;
 import java.util.LinkedList;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+
 public class Tree
 {
   private Node head;
-
+  private LinkedList<Node> headList;
   public Tree()
   {
     head = null;
+    headList = new LinkedList<Node>();
   }
   public Tree(int hd,int ch)
   {
     head = new Node(hd,new Node(ch,null,null),null);
+    headList = new LinkedList<Node>();
+    headList.add(head);
   }
-  private Node find(Node begin,int father)
+  private Node findDown(Node begin,int data)
   {
     Node current = begin;
     if (current==null) 
     {
       return null;
     }
-    else if (current.getData() == father)
+    else if (current.getData() == data)
     {
       return current;
     }
     else 
     {
-      Node rightres = find(current.getRight(),father);
-      if (rightres != null)
+      Node rightres = findDown(current.getRight(),data);
+      if ( rightres != null )
       {
         return rightres;
       }
       else
       {
-        return find(current.getLeft(),father);
+        Node leftres = findDown(current.getLeft(),data);
+        return leftres;
       }
     }
   }
+  private Node find(int data)
+  {
+    Node ans = null;
+    for (Node hd : headList)
+    {
+      ans = findDown(hd,data) ;
+      if (ans != null) 
+      {
+        return ans;
+      }
+    }
+    return null;
+  }
   public boolean insert(int father, int child)
   {
-    Node current = find(head,father);
     if(head == null)
     {
       System.out.println("New head ( "+father+" , "+child+" ) ");
       head = new Node(father,new Node(child,null,null),null);
-      return true;
-    }
-    Node rig = null;
-    Node lef = null;
-    if( current != null )
-    {
-      rig = current.getRight();
-      lef = current.getLeft();
-      if ( rig == null )
-      {
-        rig = new Node ( child, null, null );
-      }
-      else 
-      {
-        lef = new Node ( child, null, null );
-      }
+      headList.add(head);
       return true;
     }
     else
     {
-      current = find(head,child);
-      if ( current != null)
+      Node current = find(father);
+      Node rig = null;
+      Node lef = null;
+      if( current != null )
       {
-        rig = current.getFRight();
-        lef = current.getFLeft();
+        System.out.println("Found father in tree there he is "+father);
+        rig = current.getRight();
+        lef = current.getLeft();
         if ( rig == null )
         {
-          rig = new Node ( father, current, null );
+          rig = new Node ( child, null, null );
+          current.setRight(rig);
         }
         else 
         {
-          lef = new Node ( father, current, null );
+          lef = new Node ( child, null, null );
+          current.setLeft(lef);
         }
+
         return true;
       }
       else
       {
-        System.out.println("( "+father+" , "+child+" ) failed");
-        return false;
-      }
+        current = find(child);
+        if ( current != null)
+        {
+          System.out.println("Found child in tree there it is "+child);
+          rig = current.getFRight();
+          lef = current.getFLeft();
+          if ( rig == null )
+          {
+            rig = new Node ( father, current, null );
+            current.setFRight(rig);
+            headList.add(rig);
+            headList.remove(current) ;
+          }
+          else 
+          {
+            lef = new Node ( father, current, null );
+            current.setFRight(rig);
+            headList.add(lef);
+            headList.remove(current);
+          }
+          return true;
+        }
+        else
+        {
+          System.out.println("( "+father+" , "+child+" ) failed");
+          return false;
+        }
 
+      }
     }
   }
   public void insertNodesInTree(LinkedList<int[]> NodeList)
   {
     int[] current = null;
+    int prevSize = 0;
+    int times = 0;
     while( NodeList.size() > 0)
     { 
       current = NodeList.removeFirst();
@@ -97,13 +134,28 @@ public class Tree
       else
       {
         NodeList.addLast(current);
+        System.out.println("Stop");
+        if (prevSize == NodeList.size())
+        {
+          times++;
+          if (times == 15) break;
+        }
+        else
+        {
+          prevSize = NodeList.size();
+        }
+
       }
       
     }
   }
   public void print()
   {
-    printTree(head);
+    for (Node hd : headList )
+    {
+      printTree(hd);
+      System.out.println("\nNext head\n");
+    }
   }
   private void printTree(Node begin)
   {
@@ -111,8 +163,12 @@ public class Tree
     if(current != null)
     {
       current.printNode();
+      System.out.print(" Right= ");
       printTree(current.getRight());
+      System.out.print(" Left= ");
       printTree(current.getLeft());
+    //  printTree(current.getFRight());
+    //  printTree(current.getFLeft());
     }
   }
 }
