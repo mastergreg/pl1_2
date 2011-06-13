@@ -1,5 +1,5 @@
 
-public class Main
+public class Grafo 
 {
 
 	public static void main(String[] args)
