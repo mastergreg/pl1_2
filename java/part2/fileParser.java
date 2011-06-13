@@ -57,6 +57,18 @@ public class fileParser
       System.out.println("("+nodeArray[0][current]+","+nodeArray[1][current]+")");
     }
   }
+  public void printNodeList()
+  {
+    LinkedList<int[]> buf = new LinkedList<int[]>();
+    buf = (LinkedList<int[]>) NodeList.clone();
+    int[] current = null;
+    while( buf.size() > 0 )
+    {
+      
+      current = buf.removeFirst();
+      System.out.println("("+current[0]+","+current[1]+")");
+    }
+  }
   public int getNodes()
   {
     return nodes;

@@ -2,10 +2,11 @@ import java.util.List;
 import java.util.LinkedList;
 public class Tree
 {
-  private Node head=null;
+  private Node head;
 
   public Tree()
   {
+    head = null;
   }
   public Tree(int hd,int ch)
   {
@@ -40,6 +41,7 @@ public class Tree
     Node current = find(head,father);
     if(head == null)
     {
+      System.out.println("New head ( "+father+" , "+child+" ) ");
       head = new Node(father,new Node(child,null,null),null);
       return true;
     }
@@ -78,6 +80,7 @@ public class Tree
       }
       else
       {
+        System.out.println("( "+father+" , "+child+" ) failed");
         return false;
       }
 
@@ -88,8 +91,7 @@ public class Tree
     int[] current = null;
     while( NodeList.size() > 0)
     { 
-      current = NodeList.getFirst();
-      NodeList.removeFirst();
+      current = NodeList.removeFirst();
       if( insert(current[0],current[1] ) )
         continue;
       else

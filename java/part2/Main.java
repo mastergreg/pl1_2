@@ -6,9 +6,7 @@ public class Main
 	{
     fileParser test = new fileParser();
     test.parseIn();
-    test.printNodeArray();
-    int nodes = test.getNodes();
-    int[][] nodesforTree = test.getNodeArray();
+    test.printNodeList();
     Tree myTestTree = new Tree();
     myTestTree.insertNodesInTree(test.getNodeList()); 
     myTestTree.print();
