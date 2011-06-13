@@ -64,7 +64,8 @@ public class Tree
   {
     if(head == null)
     {
-      System.out.println("New head ( "+father+" , "+child+" ) ");
+      //System.out.println("New head ( "+father+" , "+child+" ) ");
+
       head = new Node(father,new Node(child,null,null),null);
       headList.add(head);
       return true;
@@ -76,7 +77,7 @@ public class Tree
       Node lef = null;
       if( current != null )
       {
-        System.out.println("Found father in tree there he is "+father);
+    //    System.out.println("Found father in tree there he is "+father);
         rig = current.getRight();
         lef = current.getLeft();
         if ( rig == null )
@@ -97,7 +98,7 @@ public class Tree
         current = find(child);
         if ( current != null)
         {
-          System.out.println("Found child in tree there it is "+child);
+      //    System.out.println("Found child in tree there it is "+child);
           rig = current.getFRight();
           lef = current.getFLeft();
           if ( rig == null )
@@ -118,7 +119,7 @@ public class Tree
         }
         else
         {
-          System.out.println("( "+father+" , "+child+" ) failed");
+       //   System.out.println("( "+father+" , "+child+" ) failed");
           return false;
         }
 
@@ -138,7 +139,7 @@ public class Tree
       else
       {
         NodeList.addLast(current);
-        System.out.println("Stop");
+        //System.out.println("Stop");
         if (prevSize == NodeList.size())
         {
           times++;
