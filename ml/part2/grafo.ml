@@ -1,3 +1,7 @@
+(*
+datatype Head = HD of (Tree list);
+datatype Tree = Empty | Node of (Tree*Tree*int*Tree*Tree);
+*)
 fun parse file =
   let
     (* Open input file *)
@@ -15,3 +19,9 @@ fun parse file =
   in
     read (n-1) nil
   end
+
+(*
+fun insert tree (father,child) = 
+  let
+    fun insertH Node (fRNode,fLNode,data,rNode,lNode) (father,child) = Node (fRNode,fLNode,data,rNode,lNode)
+      *)

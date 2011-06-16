@@ -83,11 +83,13 @@ public class Tree
         if ( rig == null )
         {
           rig = new Node ( child, null, null );
+          rig.setFRight(current);
           current.setRight(rig);
         }
         else 
         {
           lef = new Node ( child, null, null );
+          lef.setFRight(current);
           current.setLeft(lef);
         }
 
@@ -111,7 +113,7 @@ public class Tree
           else 
           {
             lef = new Node ( father, current, null );
-            current.setFRight(rig);
+            current.setFLeft(lef);
             headList.add(lef);
             headList.remove(current);
           }
