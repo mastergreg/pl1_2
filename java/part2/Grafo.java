@@ -1,10 +1,10 @@
-
+import java.util.Arrays;
 public class Grafo 
 {
 
 	public static void main(String[] args)
 	{
-    fileParser test = new fileParser();
+    /*fileParser test = new fileParser();
     test.parseIn();
     //test.printNodeList();
     Tree myTestTree = new Tree();
@@ -12,7 +12,15 @@ public class Grafo
     //test.printNodeList();
     TreeParser Tparser = new TreeParser(myTestTree.getHeadList());
     Tparser.parseTree();
-    System.out.println();
+    */
+    ArrayFileParser boom = new ArrayFileParser();
+    boom.parseIn();
+    int[][] tick = boom.getNodeArray();
+
+    NodeArrayParser myparser = new NodeArrayParser(tick);
+    myparser.parseArray();
+
+    myparser.printSolution();
 	}
 
 }
