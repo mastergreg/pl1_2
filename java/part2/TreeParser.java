@@ -19,8 +19,6 @@ public class TreeParser
     LinkedList<Node> bridges = null;
     while (current.getRight()!=null)
     {
-      //System.out.println(current.getData());
-      //System.out.println(current.getFRight());
       if (current.getFLeft()!=null)
       {
         start = current;
@@ -42,6 +40,7 @@ public class TreeParser
     }
     for ( Node pr : bridges )
     {
+      //System.out.println(pr);
       System.out.print(pr.getData()+" ");
     }
   }

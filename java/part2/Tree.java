@@ -64,7 +64,7 @@ public class Tree
   {
     if(head == null)
     {
-      //System.out.println("New head ( "+father+" , "+child+" ) ");
+      System.out.println("New head ( "+father+" , "+child+" ) ");
 
       head = new Node(father,new Node(child,null,null),null);
       headList.add(head);
@@ -77,7 +77,7 @@ public class Tree
       Node lef = null;
       if( current != null )
       {
-    //    System.out.println("Found father in tree there he is "+father);
+        //System.out.println("Found father in tree there he is "+father);
         rig = current.getRight();
         lef = current.getLeft();
         if ( rig == null )
@@ -100,7 +100,7 @@ public class Tree
         current = find(child);
         if ( current != null)
         {
-      //    System.out.println("Found child in tree there it is "+child);
+          //System.out.println("Found child in tree there it is "+child);
           rig = current.getFRight();
           lef = current.getFLeft();
           if ( rig == null )
@@ -132,12 +132,16 @@ public class Tree
   {
     int[] current = null;
     int prevSize = 0;
+    int MaxTimes = NodeList.size();
     int times = 0;
     while( NodeList.size() > 0)
     { 
       current = NodeList.removeFirst();
-      if( insert(current[0],current[1] ) )
+      if( insert( current[0],current[1] ) )
+      {
+        times=0;
         continue;
+      }
       else
       {
         NodeList.addLast(current);
@@ -145,7 +149,7 @@ public class Tree
         if (prevSize == NodeList.size())
         {
           times++;
-          if (times == 15) break;
+          if (times == MaxTimes) break;
         }
         else
         {
