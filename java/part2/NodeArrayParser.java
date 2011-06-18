@@ -40,10 +40,10 @@ public class NodeArrayParser
     int current = start;
     while(current!=stop)
     {
+      System.out.print(current+1+" ");
       current=next(current);
-      System.out.print(current+" ");
     }
-    System.out.println(next(stop));
+    System.out.println(stop+1);
   }
   private int next(int i)
   {
