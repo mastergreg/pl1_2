@@ -72,12 +72,31 @@ fun findStop arr (start,i) =
 
 fun getAllelements arr (start,stop) = 
   let 
-    fun getAllelements_h arr (start,stop) curr acc = if (stop=curr) 
-      then (rev ((stop+1)::acc) )
-      else getAllelements_h arr (start,stop) (nextNodeIndex arr curr) ((curr+1)::acc)
+    fun getallelements_h arr (start,stop) curr acc = if (stop=curr) 
+      then rev ((stop+1)::acc) 
+      else getallelements_h arr (start,stop) (nextNodeIndex arr curr) ((curr+1)::acc)
   in
-    getAllelements_h arr (start,stop) start []
+    getallelements_h arr (start,stop) start []
   end
+
+fun printAllelements arr (start,stop) = 
+  let
+    fun printallelements_h arr (start,stop) curr = 
+      if (stop=curr) 
+        then print((Int.toString(stop+1))^" ")
+      else 
+        let 
+          val _ = (print(Int.toString(curr+1)^" "))
+        in
+          printallelements_h arr (start,stop) (nextNodeIndex arr curr) 
+        end
+  in
+    printallelements_h arr (start,stop) start
+  end
+
+
+
+
 fun makeArr nodeList = 
   let
     val out = Array.array((length(nodeList)+1),(0,0,0))
@@ -101,8 +120,3 @@ fun grafo file =
   end
 
 
-(*
-fun insert tree (father,child) = 
-  let
-    fun insertH Node (fRNode,fLNode,data,rNode,lNode) (father,child) = Node (fRNode,fLNode,data,rNode,lNode)
-      *)
