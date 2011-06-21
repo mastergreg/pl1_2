@@ -119,4 +119,3 @@ fun grafo file =
     getAllelements arr (findStop arr (findStart arr))
   end
 
-
