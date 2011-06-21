@@ -83,7 +83,7 @@ fun printAllelements arr (start,stop) =
   let
     fun printallelements_h arr (start,stop) curr = 
       if (stop=curr) 
-        then print((Int.toString(stop+1))^" ")
+        then print((Int.toString(stop+1))^"\n")
       else 
         let 
           val _ = (print(Int.toString(curr+1)^" "))
