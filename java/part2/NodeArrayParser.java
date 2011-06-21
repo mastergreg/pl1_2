@@ -20,7 +20,7 @@ public class NodeArrayParser
       }
     }
     int current = start;
-    while(current!=0)
+    while(NodeArrPrv[current][0]!=0)
     {
       if (NodeArrPrv[current][1]==2)
       {
